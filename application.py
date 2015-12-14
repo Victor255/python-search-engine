@@ -19,15 +19,18 @@ class search_engine(object):
 			self.menu_decision(two_menu)
 
 	def shows_menu(self):
+		"""THIS SHOWS THE MENU"""
 		print "--1.SEARCH WORD"
 		print "--2.EXIT"
 
 	def two_menu(self):
+		"""THIS ASKS THE USER TO ENTER THE NUMBER OF THE DESIRED OPTION"""
 		menu_val = raw_input("\nEnter the number of the desired option: -- ")
 		menu_val = self.minuscule(menu_val)
 		return menu_val
 	
 	def minuscule(self, menu_val):
+		"""THIS CONVERTS THE ELECTION IN MINUSCULE"""
 		menu_val = menu_val.lower()
 		return menu_val
 	
@@ -58,6 +61,7 @@ class search_engine(object):
 		verifie_word = self.verifie_word(word, page_one, page_two, url1, url2)
 
 	def ask_url(self):
+		"""THIS ASKS TO USER"""
 		word = raw_input("Enter the word you want to search: ")
 		url1 = raw_input("\nEnter the first URL: ")
 		url2 = raw_input("\nEnter the second URL: ")
@@ -120,6 +124,7 @@ class search_engine(object):
 		press_enter = raw_input("\nPRESS ENTER")
 
 	def clean_screen(self):
+		"""THIS CLEANS THE SCREEN"""
 		os.system('reset')
 
 	def exit(self):
