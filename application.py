@@ -37,6 +37,7 @@ class search_engine(object):
 		else:
 			press_enter = raw_input("\nInvalid option")
 
+	#Test 1
 	def true_menu(self, menu_val):
 		""""THIS VERIFIES IF THE OPTION IS CORRECT"""
 		if menu_val == "1" or menu_val == "2":
@@ -50,6 +51,7 @@ class search_engine(object):
 		menu_val = self.minuscule(menu_val)
 		return menu_val
 	
+	#Test2
 	def minuscule(self, menu_val):
 		"""THIS CONVERTS THE ELECTION IN MINUSCULE"""
 		menu_val = menu_val.lower()
@@ -116,10 +118,12 @@ class search_engine(object):
 		else:
 			return "Correct urls"
 	
+	#Test 3
 	def page_one(self, word, page_html1):
 		page_one = page_html1.count(word)
 		return page_one
 	
+	#Test 4
 	def page_two(self, word, page_html2):
 		page_two = page_html2.count(word)
 		return page_two
