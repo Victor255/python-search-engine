@@ -15,6 +15,7 @@ class search_engine(object):
 		os.system('reset')
 
 	def menu(self):
+		"""THIS KEEP THE MENU"""
 		while True:
 			self.clean_screen()
 			self.shows_menu()
@@ -27,6 +28,22 @@ class search_engine(object):
 		print "--1.SEARCH WORD"
 		print "--2.EXIT"
 
+	def menu_decision(self, two_menu):
+		"""THIS PROMPTS THE USER TO ENTER A NUMBER"""
+		if two_menu == "1":
+			self.search()
+		elif two_menu == "2":
+			self.exit()
+		else:
+			press_enter = raw_input("\nInvalid option")
+
+	def true_menu(self, menu_val):
+		""""THIS VERIFIES IF THE OPTION IS CORRECT"""
+		if menu_val == "1" or menu_val == "2":
+			return "Valid option"
+		else:
+			return "Invalid option"
+
 	def two_menu(self):
 		"""THIS ASKS THE USER TO ENTER THE NUMBER OF THE DESIRED OPTION"""
 		menu_val = raw_input("\nEnter the number of the desired option: -- ")
@@ -36,23 +53,7 @@ class search_engine(object):
 	def minuscule(self, menu_val):
 		"""THIS CONVERTS THE ELECTION IN MINUSCULE"""
 		menu_val = menu_val.lower()
-		return menu_val
-	
-	def true_menu(self, menu_val):
-		""""THIS VERIFIES IF THE OPTION IS CORRECT"""
-		if menu_val == "1" or menu_val == "2":
-			return "Valid option"
-		else:
-			return "Invalid option"
-
-	def menu_decision(self, two_menu):
-		"""THIS PROMPTS THE USER TO ENTER A NUMBER"""
-		if two_menu == "1":
-			self.search()
-		elif two_menu == "2":
-			self.exit()
-		else:
-			press_enter = raw_input("\nInvalid option")
+		return menu_val			
 
 	def search(self):
 		"""THIS INTERACTS WITH THE USER"""
@@ -70,6 +71,7 @@ class search_engine(object):
 	def ask_url(self):
 		"""IT PROMPTS THE USER TO ENTER A WORD AND URL"""
 		word = raw_input("Enter the word you want to search: ")
+		self.clean_screen()
 		url1 = raw_input("\nEnter the first URL: ")
 		url2 = raw_input("\nEnter the second URL: ")
 		return word, url1, url2
@@ -87,7 +89,7 @@ class search_engine(object):
 				return page_html1
 			except:
 				press_enter = raw_input("\nThe first URL is Invalid")
-				return "Incorrect url"
+				return "Invalid url"
 
 	def url_two(self, url2):
 		"""THIS SAVES THE SECOND URL"""
@@ -101,13 +103,13 @@ class search_engine(object):
 				page_html2 = self.url_two(url2)
 				return page_html2
 			except:
-				press_enter = raw_input("URL incorrect")
-				return "Incorrect url"
+				press_enter = raw_input("URL Invalid")
+				return "Invalid url"
 
 	def valid_url(self, page_html1, page_html2):
 		"""THIS VERIFIES IF THE URLS ENTERED ARE CORRECT"""
-		if page_html1 == "Incorrect url" or page_html2 == "Incorrect url":
-			valid_url = "Incorrect urls"
+		if page_html1 == "Invalid url" or page_html2 == "Invalid url":
+			valid_url = "Invalid urls"
 			press_enter = raw_input("\nPlease enter a correct URL!!!")
 			self.clean_screen()
 			return valid_url
@@ -131,14 +133,17 @@ class search_engine(object):
 		elif page_one == page_two and page_one != 0 and page_two != 0:
 			print "\nTHE WORD IS REPEATED THE SAME QUANTITY OF TIMES IN BOTH PAGES"
 		elif page_one == 0 and page_two == 0:
+			self.clean_screen()
 			print "\nTHE WORD YOU ARE SEARCHING IS NOT IN ANY PAGE"
 		press_enter = raw_input("\nPRESS ENTER")	
 
 	def exit(self):
+		"""THIS ENDS THE PROJECT"""
 		self.clean_screen()
 		sys.exit()
 
 def application():
+	"""THIS EXECUTES THE PROJECT"""
 	my_program = search_engine()
 	my_program.menu()
 
