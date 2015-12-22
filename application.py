@@ -35,7 +35,7 @@ class SearchEngine(object):
         elif two_menu == "2":
             self.exit()
         else:
-            raw_input("\nInvalid option")
+            press = raw_input("\nInvalid option")
 
     #Test 1
     def true_menu(self, menu_val):
@@ -51,7 +51,7 @@ class SearchEngine(object):
         menu_val = self.minuscule(menu_val)
         return menu_val
 
-    #Test2
+    #Test 2
     def minuscule(self, menu_val):
         """THIS CONVERTS THE ELECTION IN MINUSCULE"""
         menu_val = menu_val.lower()
@@ -60,15 +60,15 @@ class SearchEngine(object):
     def search(self):
         """THIS INTERACTS WITH THE USER"""
         self.clean_screen()
-        valid_url = "Invalid urls"
-        while valid_url == "Invalid urls":
+        valid_url = "Incorrect urls"
+        while valid_url == "Incorrect urls":
             word, url1, url2 = self.ask_url()
             page_html1 = self.url_one(url1)
             page_html2 = self.url_two(url2)
             valid_url = self.valid_url(page_html1, page_html2)
         page_one = self.page_one(word, page_html1)
         page_two = self.page_two(word, page_html2)
-        self.verifie_word(page_one, page_two, url1, url2)
+        verifie_word = self.verifie_word(word, page_one, page_two, url1, url2)
 
     def ask_url(self):
         """IT PROMPTS THE USER TO ENTER A WORD AND URL"""
@@ -90,8 +90,8 @@ class SearchEngine(object):
                 page_html1 = self.url_one(url1)
                 return page_html1
             except ValueError:
-                raw_input("\nThe first URL is Invalid")
-                return "Invalid url"
+                press = raw_input("\nThe First URL is Invalid")
+                return "Incorrect url"
 
     def url_two(self, url2):
         """THIS SAVES THE SECOND URL"""
@@ -105,14 +105,14 @@ class SearchEngine(object):
                 page_html2 = self.url_two(url2)
                 return page_html2
             except ValueError:
-                raw_input("URL Invalid")
-                return "Invalid url"
+                press = raw_input("\nThe Second URL is Invalid")
+                return "Incorrect url"
 
     def valid_url(self, page_html1, page_html2):
         """THIS VERIFIES IF THE URLS ENTERED ARE CORRECT"""
-        if page_html1 == "Invalid url" or page_html2 == "Invalid url":
-            valid_url = "Invalid urls"
-            raw_input("\nPlease enter a correct URL!!!")
+        if page_html1 == "Incorrect url" or page_html2 == "Incorrect url":
+            valid_url = "Incorrect urls"
+            press = raw_input("\nPlease enter a valid url!!!")
             self.clean_screen()
             return valid_url
         else:
@@ -120,36 +120,33 @@ class SearchEngine(object):
 
     #Test 3
     def page_one(self, word, page_html1):
-        """THIS SHOWS THE FIRST URL ENTERED"""
+        """THIS RETURNS US TO THE URL THAT CONTAINS THE WORD ENTERED"""
         page_one = page_html1.count(word)
         return page_one
 
     #Test 4
     def page_two(self, word, page_html2):
-        """THIS SHOWS THE FIRST URL ENTERED"""
+        """THIS RETURNS US TO THE URL THAT CONTAINS THE WORD ENTERED"""
         page_two = page_html2.count(word)
         return page_two
 
-    def verifie_word(self, page_one, page_two, url1, url2):
+    def verifie_word(self, word, page_one, page_two, url1, url2):
         """THIS SHOW THE PAGE THAT HAS MORE TIMES THE WORD"""
         if page_one > page_two:
             print "\nTHIS URL CONTAINS MORE THE WORD: %s APPEARS  %s  TIMES" % (url1, page_one)
         elif page_two > page_one:
             print "\nTHIS URL CONTAINS MORE THE WORD: %s APPEARS  %s  TIMES" % (url2, page_two)
         elif page_one == page_two and page_one != 0 and page_two != 0:
-            print "\nTHE WORD IS REPEATED THE SAME QUANTITY OF TIMES IN BOTH PAGES"
+            print "\nThe word is repeated the same quatity of times in both pages"
         elif page_one == 0 and page_two == 0:
-            self.clean_screen()
-            print "\nTHE WORD YOU ARE SEARCHING IS NOT IN ANY PAGE"
-        raw_input("\nPRESS ENTER")
+            print "\nThe word you are searching is not in any page"
+        press = raw_input("\nPRESS ENTER")
 
     def exit(self):
-        """THIS ENDS THE PROJECT"""
         self.clean_screen()
         sys.exit()
 
 def application():
-    """THIS EXECUTES THE PROJECT"""
     my_program = SearchEngine()
     my_program.menu()
 
