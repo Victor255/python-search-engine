@@ -10,10 +10,6 @@ class SearchEngine(object):
     def __init__(self):
         pass
 
-    def clean_screen(self):
-        """THIS CLEANS THE SCREEN"""
-        os.system('reset')
-
     def menu(self):
         """THIS KEEP THE MENU"""
         while True:
@@ -28,6 +24,26 @@ class SearchEngine(object):
         print "--1.SEARCH WORD"
         print "--2.EXIT"
 
+    def two_menu(self):
+        """THIS ASKS THE USER TO ENTER THE NUMBER OF THE DESIRED OPTION"""
+        val_menu = raw_input("\nEnter the number of the desired option: -- ")
+        val_menu = self.minuscule(val_menu)
+        return val_menu
+
+    #Test 1
+    def true_menu(self, val_menu):
+        """"THIS VERIFIES IF THE OPTION IS CORRECT"""
+        if val_menu == "1" or val_menu == "2":
+            return "Valid option"
+        else:
+            return "Invalid option"
+
+    #Test 2
+    def minuscule(self, val_menu):
+        """THIS CONVERTS THE ELECTION IN MINUSCULE"""
+        val_menu = val_menu.lower()
+        return val_menu
+
     def menu_decision(self, two_menu):
         """THIS PROMPTS THE USER TO ENTER A NUMBER"""
         if two_menu == "1":
@@ -36,26 +52,6 @@ class SearchEngine(object):
             self.exit()
         else:
             press = raw_input("\nInvalid option")
-
-    #Test 1
-    def true_menu(self, menu_val):
-        """"THIS VERIFIES IF THE OPTION IS CORRECT"""
-        if menu_val == "1" or menu_val == "2":
-            return "Valid option"
-        else:
-            return "Invalid option"
-
-    def two_menu(self):
-        """THIS ASKS THE USER TO ENTER THE NUMBER OF THE DESIRED OPTION"""
-        menu_val = raw_input("\nEnter the number of the desired option: -- ")
-        menu_val = self.minuscule(menu_val)
-        return menu_val
-
-    #Test 2
-    def minuscule(self, menu_val):
-        """THIS CONVERTS THE ELECTION IN MINUSCULE"""
-        menu_val = menu_val.lower()
-        return menu_val
 
     def search(self):
         """THIS INTERACTS WITH THE USER"""
@@ -84,13 +80,13 @@ class SearchEngine(object):
             page1 = urllib2.urlopen(url1)
             page_html1 = page1.read()
             return page_html1
-        except ValueError:
+        except:
             try:
                 url1 = "http://%s" % url1
                 page_html1 = self.url_one(url1)
                 return page_html1
-            except ValueError:
-                press = raw_input("\nThe First URL is Invalid")
+            except:
+                press = raw_input("The first URL is incorrect")
                 return "Incorrect url"
 
     def url_two(self, url2):
@@ -99,13 +95,13 @@ class SearchEngine(object):
             page2 = urllib2.urlopen(url2)
             page_html2 = page2.read()
             return page_html2
-        except ValueError:
+        except:
             try:
                 url2 = "http://%s" % url2
                 page_html2 = self.url_two(url2)
                 return page_html2
-            except ValueError:
-                press = raw_input("\nThe Second URL is Invalid")
+            except:
+                press = raw_input("The Second URL is incorrect")
                 return "Incorrect url"
 
     def valid_url(self, page_html1, page_html2):
@@ -137,10 +133,14 @@ class SearchEngine(object):
         elif page_two > page_one:
             print "\nTHIS URL CONTAINS MORE THE WORD: %s APPEARS  %s  TIMES" % (url2, page_two)
         elif page_one == page_two and page_one != 0 and page_two != 0:
-            print "\nThe word is repeated the same quatity of times in both pages"
+            print "\nTHE WORD IS REPEATED THE SAME QUATITY OF TIMES IN BOTH PAGES"
         elif page_one == 0 and page_two == 0:
-            print "\nThe word you are searching is not in any page"
+            print "\nTHE WORD YOU ARE SEARCHING IS NOT IN ANY PAGE"
         press = raw_input("\nPRESS ENTER")
+
+    def clean_screen(self):
+        """THIS CLEANS THE SCREEN"""
+        os.system('reset')
 
     def exit(self):
         self.clean_screen()
