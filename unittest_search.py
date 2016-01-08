@@ -1,29 +1,30 @@
 import application
 import unittest
 
-class Test_SearchEngine(unittest.TestCase):
-	"""docstring for Test_SearchEngine"""
+class SearchEngineTest(unittest.TestCase):
+	"""docstring for ClassName"""
 
-	#Test true_menu
-	def test_true_menu(self):
-		class_application = application.SearchEngine()
-		self.assertEqual(class_application.true_menu("1"), "Valid option")
-		self.assertEqual(class_application.true_menu("EXIT"), "Invalid option")
+	#Test is_space
+	def test_is_space(self):
+		searcher = application.SearchEngine()
+		self.assertEqual(searcher.is_space(""), True)
+		self.assertEqual(searcher.is_space(" "), True)
+		self.assertEqual(searcher.is_space("hola"), False)
+
+	#Test valid_url
+	def test_valid_url(self):
+		searcher = application.SearchEngine()
+		self.assertEqual(searcher.valid_url("jhgkhgkjhg"), False)
+
+	#Test count_page
+	def test_count_page(self):
+		searcher = application.SearchEngine()
+		self.assertEqual(searcher.count_page("a", "aba"), 2)
 
 	#Test minuscule
 	def test_minuscule(self):
-		class_application = application.SearchEngine()
-		self.assertTrue(class_application.minuscule("WORLD").islower())
-
-	#Test page_one
-	def test_page_one(self):
-		class_application = application.SearchEngine()
-		self.assertTrue(type(class_application.page_one("Carro", "https://es.wikipedia.org/wiki/Carro")) == int)
-
-	#Test page_two
-	def test_page_two(self):
-		class_application = application.SearchEngine()
-		self.assertTrue(type(class_application.page_two("Carro", "http://www.olx.com.ve/carros-cat-378")) == int)
+		searcher = application.SearchEngine()
+		self.assertEqual(searcher.minuscule("Y"), "y")
 
 if __name__ == '__main__':
 	unittest.main()
