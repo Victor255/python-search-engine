@@ -1,8 +1,8 @@
 import application
 import unittest
 
-class SearchEngineTest(unittest.TestCase):
-	"""docstring for ClassName"""
+class Test_Search_Engine(unittest.TestCase):
+	"""docstring for Test_Search_Engine"""
 
 	#Test is_space
 	def test_is_space(self):
@@ -10,11 +10,6 @@ class SearchEngineTest(unittest.TestCase):
 		self.assertEqual(searcher.is_space(""), True)
 		self.assertEqual(searcher.is_space(" "), True)
 		self.assertEqual(searcher.is_space("hola"), False)
-
-	#Test valid_url
-	def test_valid_url(self):
-		searcher = application.SearchEngine()
-		self.assertEqual(searcher.valid_url("jhgkhgkjhg"), False)
 
 	#Test count_page
 	def test_count_page(self):
